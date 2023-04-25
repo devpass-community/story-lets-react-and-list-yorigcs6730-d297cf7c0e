@@ -1,24 +1,25 @@
 import Container from './components/Container';
+import data from './products.json'
 
-const Item = ({ item }) => {
+const Item = ({ thumbnail, title, description, price, brand }) => {
   return (
     <li className='item' data-testid='product-item'>
-      { /* TODO */ }
-      <img src="thumbnail here"></img>
-      <h4> title here </h4>
-      <p> description here </p>
-      <span> brand here </span>
-      <span> price here </span>
+      <img src={thumbnail}></img>
+      <h4>{title}</h4>
+      <p> {description} </p>
+      <span> {brand} </span>
+      <span> {price} </span>
     </li>
   )
 }
 
 function App() {
+  const  smartPhones = data.filter(product => product.category === 'smartphones')
+
   return (
     <Container>
       <ul className='list' data-testid='product-list'>
-        { /* TODO */ }
-        <Item />
+        {smartPhones?.map(item => <Item key={item.id} {...item}/>)}  
       </ul>
     </Container>
   );
